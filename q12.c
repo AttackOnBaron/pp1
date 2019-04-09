@@ -25,27 +25,6 @@ mysecond()
 }
 
 /* ---------------------------------------- FIND_MIN */
-//RWlock
-void *find_min_rw(void *list_ptr) {
-	int *partial_list_pointer, my_min, i;
-	my_min = MIN_INT;
-	partial_list_pointer = (int *) list_ptr;
-	for (i = 0; i < partial_list_size; i++)
-		if (partial_list_pointer[i] < my_min)
-			my_min = partial_list_pointer[i];
-	/* lock the mutex associated with minimum_value and
-	update the variable as required */
-	mylib_rwlock_rlock(&read_write_lock);
-	if (my_min < minimum_value) {
-		mylib_rwlock_unlock(&read_write_lock);
-		mylib_rwlock_wlock(&read_write_lock);
-		minimum_value = my_min;
-	}
-/* and unlock the mutex */
-	mylib_rwlock_unlock(&read_write_lock);
-	pthread_exit(0);
-}
-
 typedef struct {
  	int readers;
 	int writer;
@@ -106,6 +85,27 @@ if there are pending readers, let them all go through */
 		pthread_cond_signal(&(l -> writer_proceed));
 	else if (l -> readers > 0)
 		pthread_cond_broadcast(&(l -> readers_proceed));
+}
+
+//RWlock
+void *find_min_rw(void *list_ptr) {
+	int *partial_list_pointer, my_min, i;
+	my_min = 0;
+	partial_list_pointer = (int *) list_ptr;
+	for (i = 0; i < partial_list_size; i++)
+		if (partial_list_pointer[i] < my_min)
+			my_min = partial_list_pointer[i];
+	/* lock the mutex associated with minimum_value and
+	update the variable as required */
+	mylib_rwlock_rlock(&read_write_lock);
+	if (my_min < minimum_value) {
+		mylib_rwlock_unlock(&read_write_lock);
+		mylib_rwlock_wlock(&read_write_lock);
+		minimum_value = my_min;
+	}
+/* and unlock the mutex */
+	mylib_rwlock_unlock(&read_write_lock);
+	pthread_exit(0);
 }
 /* ---------------------------------------- MAIN */
 int main(int argc, char **argv)
