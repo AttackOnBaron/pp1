@@ -63,7 +63,7 @@ int main(int argc, char **argv)
 	long l = 0;
 	long cur = 0;
 	int seed = 10;
-	long nelems = 100;
+	long nelems = 100000000;
 	double start = 0.;
 	double end = 0.;
 	int *list = NULL;
