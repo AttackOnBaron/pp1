@@ -45,7 +45,7 @@ int main (int argc,char * argv[])
             //THREADS = 2;
          //}
 	NumElements = 1000000;
-        THREADS = 2;
+        THREADS = 4;
 
         NumThreads = THREADS;
         printf("\n\t\t Array Size  :  %ld",NumElements);
