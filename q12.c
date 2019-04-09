@@ -8,7 +8,7 @@
 
 
 /* ---------------------------------------- GLOBALS */
-pthread_mutex_t	read_write_lock;
+//pthread_mutex_t	read_write_lock;
 int minimum_value;
 long partial_list_size;
 
@@ -163,7 +163,7 @@ int main(int argc, char **argv)
 	minimum_value = INT_MAX;
 
 	/* init the mutex */
-	pthread_mutex_init(&&read_write_lock, NULL);
+	pthread_mutex_init(&read_write_lock, NULL);
 
 	/* init lists, list_ptr, partial_list_size */
 	list = malloc(sizeof(int) * nelems);
