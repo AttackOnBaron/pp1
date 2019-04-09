@@ -71,8 +71,8 @@ int main(int argc, char **argv)
 	pthread_t *tids = NULL;
 	void *res = NULL;
 	/* ---- */
-	printf("Usage : %s%s", argv[0], " -S <seed> -N <num_elems> -T <num_threads> -h\n");
-	printf("Default number of threads = %d\nDefault number of elements = %ld\nDefault seed value = %d\n", nt, nelems, seed);
+	//printf("Usage : %s%s", argv[0], " -S <seed> -N <num_elems> -T <num_threads> -h\n");
+	//printf("Default number of threads = %d\nDefault number of elements = %ld\nDefault seed value = %d\n", nt, nelems, seed);
 	/* parse the command line args */
 	while ((ret = getopt(argc, argv, "S:T:N:h")) != -1) {
 		switch (ret) {
