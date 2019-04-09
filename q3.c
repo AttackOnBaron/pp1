@@ -41,8 +41,8 @@ int main (int argc,char * argv[])
             exit(-1);
          }												// user input
          else {
-            NumElements =atoi( argv[1]);
-            THREADS = atoi(argv[2]);
+            NumElements = 1000000;
+            THREADS = 2);
          }
 
         NumThreads = THREADS;
