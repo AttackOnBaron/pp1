@@ -65,7 +65,7 @@ count and increment writer count */
 				  &(l -> read_write_lock));
 	}
 	l -> pending_writers --;
-	l -> writer ++
+	l -> writer ++;
 	pthread_mutex_unlock(&(l -> read_write_lock));
 }
 
@@ -88,7 +88,7 @@ if there are pending readers, let them all go through */
 }
 
 //RWlock
-void *find_min_rw(void *list_ptr) {
+void *find_min(void *list_ptr) {
 	int *partial_list_pointer, my_min, i;
 	my_min = 0;
 	partial_list_pointer = (int *) list_ptr;
