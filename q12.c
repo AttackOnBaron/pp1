@@ -8,7 +8,7 @@
 
 
 /* ---------------------------------------- GLOBALS */
-pthread_mutex_t	minimum_value_lock;
+//pthread_mutex_t	minimum_value_lock;
 int minimum_value;
 long partial_list_size;
 
@@ -97,14 +97,14 @@ void *find_min(void *list_ptr) {
 			my_min = partial_list_pointer[i];
 	/* lock the mutex associated with minimum_value and
 	update the variable as required */
-	mylib_rwlock_rlock(&minimum_value_lock);
+	mylib_rwlock_rlock(&read_write_lock);
 	if (my_min < minimum_value) {
-		mylib_rwlock_unlock(&minimum_value_lock);
-		mylib_rwlock_wlock(&minimum_value_lock);
+		mylib_rwlock_unlock(&read_write_lock);
+		mylib_rwlock_wlock(&read_write_lock);
 		minimum_value = my_min;
 	}
 /* and unlock the mutex */
-	mylib_rwlock_unlock(&minimum_value_lock);
+	mylib_rwlock_unlock(&read_write_lock);
 	pthread_exit(0);
 }
 /* ---------------------------------------- MAIN */
