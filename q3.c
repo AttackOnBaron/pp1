@@ -32,18 +32,20 @@ int main (int argc,char * argv[])
         struct          timezone tz;
 
         int counter;        
-        printf("\n\t\t Objective : To compute the minimum of a list of numbers using read-write locks \n ");
+        //printf("\n\t\t Objective : To compute the minimum of a list of numbers using read-write locks \n ");
        
-         if( argc != 3 )                                                 // check command line arguments
-	 {
-	    printf("\t\t Very Few Arguments\n ");
-            printf("\t\t Syntax : exec <NumElements> <Threads>\n");		
-            exit(-1);
-         }												// user input
-         else {
-            NumElements = 1000000;
-            THREADS = 2);
-         }
+         //if( argc != 3 )                                                 // check command line arguments
+	 //{
+	   // printf("\t\t Very Few Arguments\n ");
+           // printf("\t\t Syntax : exec <NumElements> <Threads>\n");		
+           // exit(-1);
+         //}												// user input
+        // else {
+            //NumElements = 1000000;
+            //THREADS = 2;
+         //}
+	NumElements = 1000000;
+        THREADS = 2;
 
         NumThreads = THREADS;
         printf("\n\t\t Array Size  :  %ld",NumElements);
