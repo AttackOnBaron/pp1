@@ -164,8 +164,13 @@ int main(int argc, char **argv)
 
 	end = mysecond();
 
-	printf("Minimum value found: %d\n", minimum_value);
-	printf("Runtime of %d threads = %f seconds\n", nt, (end - start));
+	//printf("Minimum value found: %d\n", minimum_value);
+	//printf("Runtime of %d threads = %f seconds\n", nt, (end - start));
+	
+	printf("\n\t\t..........................................................................\n");
+        printf("\n\t\t Minimum Value found in the Integer list     :  %d", minimum_value);
+	printf("\n\t\t Time Taken in Seconds in  %d threads(T)     :  %lf Seconds", nt, (end - start));
+        printf("\n\t\t..........................................................................\n");
 
 	free(list);
 	free(tids);
