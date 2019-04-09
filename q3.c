@@ -120,7 +120,7 @@ int main (int argc,char * argv[])
 
         printf("\n\t\t..........................................................................\n");
         printf("\n\t\t Minimum Value found in the Integer list     :  %d",minimum_value);
-	printf("\n\t\t Time Taken in Seconds  (T)                  :  %lf Seconds",( time_end - time_start));
+	printf("\n\t\t Time Taken in Seconds in %d threads         :  %lf Seconds", THREADS, ( time_end - time_start));
         printf("\n\t\t..........................................................................\n");
         
         free(list);
