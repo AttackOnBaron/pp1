@@ -8,7 +8,7 @@
 
 
 /* ---------------------------------------- GLOBALS */
-//pthread_mutex_t	minimum_value_lock;
+pthread_mutex_t	read_write_lock;
 int minimum_value;
 long partial_list_size;
 
