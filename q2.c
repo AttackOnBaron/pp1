@@ -149,7 +149,7 @@ void gaussianEliminationUsingPThread() {
     int iterator, row, column;
     int threadCount;
     if(MATRIX_SIZE>20){
-        threadCount = 20;
+        threadCount = 4;
         pthread_t thread[threadCount];
         struct ParamStruct *paramStruct = malloc(threadCount*sizeof(struct ParamStruct));
         for (iterator = 0; iterator < MATRIX_SIZE-1; iterator++) {
@@ -192,8 +192,6 @@ void gaussianEliminationUsingPThread() {
 }
 
 int main(int argc, char **argv) {
-    
-    omp_set_num_threads(4);
 
     struct timeval startTime, endTime;
     struct timezone dummyTimeZone;
