@@ -126,44 +126,7 @@ void *nullifyLowerTriangle(struct ParamStruct *paramStruct) {
     pthread_exit(0);
 }
 
-/*
-int min(int x, int y){
-    if(x>y)
-        return x;
-    return y;
-}
-*/
 
-/*
- * Below function is called when thread count is greater than 20
- * Each thread in this method processes iterations = sliceValue (sliceValue = Matrix Size / totalThreads)
- * in one chunk
- */
-/*
-void *nullifyLowerTriangleUsingSliceRowLogic(struct ParamStruct *paramStruct){
-    int iterator = paramStruct->iterator;
-    int threadCount = paramStruct->threadCounts;
-    int beginningRow = (paramStruct->threadId)*threadCount+1+iterator;
-    int endRow = min(startIndex+threadCount,MATRIX_SIZE-1);
-    float multiplier;
-    int row, column;
-    for (row = beginningRow; row < endRow; row++) {
-        multiplier = COEFFICIENT[row][iterator] / COEFFICIENT[iterator][iterator];
-        for (column = iterator; column < MATRIX_SIZE; column++) {
-            COEFFICIENT[row][column] = COEFFICIENT[row][column] - COEFFICIENT[iterator][column] * multiplier;
-        }
-        VECTOR[row] = VECTOR[row] - VECTOR[iterator] * multiplier;
-    }
-    pthread_exit(0);
-}*/
-
-
-/*
- * Below function is called when thread count is greater than 20
- * Each thread in this method processes iterations = skipValue (skipValue = Matrix Size / totalThreads)
- * Each thread starts processing the iteration based on it's thread id after which it processes all iterations
- * at an offset of skip value from there
- */
 void *nullifyLowerTriangleUsingSkipRowLogic(struct ParamStruct *paramStruct){
 
     int iterator = paramStruct->iterator;
@@ -180,13 +143,7 @@ void *nullifyLowerTriangleUsingSkipRowLogic(struct ParamStruct *paramStruct){
     pthread_exit(0);
 }
 
-/*
- * Gaussian elimination method using pThread
- * if the MatrixSize is less than 20, total number of pthreads created is equal to MatrixSize.
- * if MatrixSize is greater than 20, total number of pthreads created is 20.
- * this method calls nullifyLowerTriangle & nullifyMultipleLowerTriangleRows to process inner loop parallely
- * After which it determines the Result using Back Substitution
- */
+
 void gaussianEliminationUsingPThread() {
 
     int iterator, row, column;
@@ -235,6 +192,8 @@ void gaussianEliminationUsingPThread() {
 }
 
 int main(int argc, char **argv) {
+    
+    omp_set_num_threads(4);
 
     struct timeval startTime, endTime;
     struct timezone dummyTimeZone;
