@@ -58,7 +58,7 @@ void *find_min(void *list_ptr)
 int main(int argc, char **argv)
 {
 	/* vars */
-	int nt = 10; //threads
+	int nt = 8; //threads
 	int ret = 0;
 	int i = 0;
 	long l = 0;
